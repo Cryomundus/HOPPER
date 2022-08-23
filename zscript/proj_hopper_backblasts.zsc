@@ -1,0 +1,101 @@
+//------------------------------------------------------------------------------
+// That HOPPER wasn't lying, IT really can BACKBLAST.
+//------------------------------------------------------------------------------
+
+
+
+// Fuck (direct to DVD remake). 
+class HD_HopperHeatBackblast:manjuice
+{
+	default
+	{
+		missiletype "manjuicetrail";
+		speed 20;
+		scale 0.5;
+	}
+	states
+	{
+	spawn:
+		MANF A 1
+		{
+			for(int i = 0; i < random(6,7); i++)
+			{
+					let aaa = spawn("HDSmoke", invoker.pos);
+					aaa.vel.x = frandom(-1,1);
+					aaa.vel.y = frandom(-3,3);
+					aaa.vel.z = random(-1,1);
+					aaa.alpha = frandom(0.5, 0.7);
+			}
+		}
+	death:
+		MISL B 0
+		{
+			vel.z+=1.;
+			A_HDBlast(
+				55,25,30,"thermal",
+				immolateradius:34,random(10,30),32
+			);
+			//A_SpawnChunks("HDSmokeChunk",random(2,4),6,20);
+			A_StartSound("misc/fwoosh",CHAN_WEAPON);
+			scale=(0.5*randompick(-1,1),0.9);
+		}
+		MISL BCD 1{
+		A_HDBlast(
+				55,25,30,"thermal",
+				immolateradius:24,random(10,30),16
+			);
+			
+			vel.x-=1.5;
+			scale*=0.5;
+		}stop;
+	}
+}
+
+
+
+// Fuck (direct to DVD remake). 
+class HD_HopperBackblast:manjuice
+{
+	default
+	{
+		missiletype "manjuicetrail";
+		speed 20;
+		scale 0.5;
+	}
+	states
+	{
+	spawn:
+		MANF A 1 NODELAY
+		{
+			for(int i = 0; i < random(6,7); i++)
+			{
+					let aaa = spawn("HDSmoke", invoker.pos);
+					aaa.vel.x = frandom(-1,1);
+					aaa.vel.y = frandom(-3,3);
+					aaa.vel.z = random(-1,1);
+					aaa.alpha = frandom(0.5, 0.7);
+			}
+		}
+	death:
+		MISL B 0
+		{
+			vel.z+=1.;
+			A_HDBlast(
+				55,5,30,"thermal",
+				immolateradius:34,15,32
+			);
+			//A_SpawnChunks("HDSmokeChunk",random(2,4),6,20);
+			A_StartSound("misc/fwoosh",CHAN_WEAPON);
+			scale=(0.5*randompick(-1,1),0.9);
+		}
+		MISL BCD 1{
+		A_HDBlast(
+				55,5,30,"thermal",
+				immolateradius:24,15,16
+			);
+			
+			vel.x-=1.5;
+			scale*=0.5;
+		}stop;
+	}
+}

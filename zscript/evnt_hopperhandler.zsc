@@ -1,0 +1,74 @@
+// Small and large spawners. 
+class BigHopMapPickup:IdleDummy{
+	states{
+	spawn:
+		TNT1 A 0 nodelay{
+			let wep=HDHopper(spawn("HDHopper",pos,ALLOW_REPLACE));
+			if(!wep)return;
+			HDF.TransferSpecials(self,wep);
+
+			A_SpawnItemEx("RocketBigPickup",3);
+			A_SpawnItemEx("HDRocketAmmo",5);
+		}stop;
+	}
+}
+
+class SmallHopMapPickup:IdleDummy{
+	states{
+	spawn:
+		TNT1 A 0 nodelay{
+			let wep=HDHopper(spawn("HDHopper",pos,ALLOW_REPLACE));
+			if(!wep)return;
+			HDF.TransferSpecials(self,wep);
+			A_SpawnItemEx("HDRocketAmmo",65);
+		}stop;
+	}
+}
+
+
+
+// For random replacement events. 
+class HopperHandler : EventHandler
+{
+	override void CheckReplacement(ReplaceEvent e)
+	{
+		if (!e.Replacement)
+		{
+			return;
+		}
+
+		switch (e.Replacement.GetClassName())
+		{
+			case 'RocketBoxRandom':
+				if (random[ofrthrand]() <= 38)
+				{
+					e.Replacement = "BigHopMapPickup";
+				}
+				break;
+			case 'HDRocketAmmo':
+				if (random[ofrthrand]() <= 20)
+				{
+					e.Replacement = "SmallHopMapPickup";
+				}
+				break;
+		}
+	}
+	
+	// Allows for ammo to properly recognize the hopper via purgeuselessammo.
+	override void WorldThingSpawned(WorldEvent e)
+	{ 
+		let hippity = HDAmmo(e.Thing); 	
+		if(hippity)
+		{ 			
+			switch(hippity.GetClassName())
+			{
+				case 'HDRocketAmmo':
+					hippity.ItemsThatUseThis.Push("HDHopper");
+					break;	
+				case 'HeatAmmo':
+					hippity.ItemsThatUseThis.Push("HDHopper");
+					break;	
+			}
+		}
+	}	
+}

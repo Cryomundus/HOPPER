@@ -1,0 +1,15 @@
+// For custom sprites. 
+sprite hlret, 65,65
+{
+	patch rlret, 0, 0{}
+}
+
+sprite hlscop, 87,82
+{
+	patch rlscop, 0, 0{}
+}
+
+sprite hlsite, 5,13
+{
+	patch frntsite, 0, 0{}
+}
