@@ -1,6 +1,7 @@
 # HOPPER
 A mod for Hideous Destructor
-Compatible with hideousdestructor-v4.8.2a.pk3
+------------------------------------------
+Compatible with Hideous Destructor Release Version 4.8.2a
 ------------------------------------------
 Massive thank you to FDA for all of your work with backblasts and fixing up weapon code! 
 Seriously this would have been literal months before I would've had this ready for release were it not for your help.
