@@ -316,14 +316,12 @@ action void A_HeatBackBlast()
 		vector3 gpos=pos+gunpos((0,0,-getdefaultbytype(rrr).height*0.6));
 		rkt = gyrogrenade(spawn(rrr,gpos,ALLOW_REPLACE));
 		let hdp=hdplayerpawn(self);
-		if(hdp)
-		{
+		if(hdp){
 			rkt.angle=hdp.gunangle;
-			rkt.pitch=hdp.gunpitch-2;
-		}else
-		{
+			rkt.pitch=hdp.gunpitch;
+		}else{
 			rkt.angle=angle;
-			rkt.pitch=pitch-2;
+			rkt.pitch=pitch;
 		}
 		rkt.target=self;rkt.master=self;
 		rkt.primed=false;
