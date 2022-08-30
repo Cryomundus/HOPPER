@@ -315,7 +315,6 @@ action void A_HeatBackBlast()
 
 		vector3 gpos=pos+gunpos((0,0,-getdefaultbytype(rrr).height*0.6));
 		rkt = gyrogrenade(spawn(rrr,gpos,ALLOW_REPLACE));
-
 		let hdp=hdplayerpawn(self);
 		if(hdp)
 		{
@@ -326,9 +325,9 @@ action void A_HeatBackBlast()
 			rkt.angle=angle;
 			rkt.pitch=pitch-2;
 		}
-
 		rkt.target=self;rkt.master=self;
 		rkt.primed=false;
+		rkt.isrocket=true;
 
 		A_ZoomRecoil(0.7);
 		if(gunbraced())
