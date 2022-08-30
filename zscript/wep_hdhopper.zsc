@@ -37,6 +37,8 @@ class HDHopper:HDWeapon
 action void A_BackBlast()
 	{	
 		vector3 positionoffset = pos+gunpos((0,0,-getdefaultbytype("GyroGrenade").height*0.6));
+		positionoffset += (cos(angle-180) * 30, sin(angle-180) * 30,-sin(pitch)*-3);
+		
 		let blst=hd_hopperbackblast(spawn("HD_HopperBackblast",positionoffset,
 			ALLOW_REPLACE)
 		);
@@ -52,6 +54,8 @@ action void A_BackBlast()
 action void A_HeatBackBlast()
 	{
 		vector3 positionoffset = pos+gunpos((0,0,-getdefaultbytype("HDHEAT").height*0.6));
+		positionoffset += (cos(angle-180) * 30, sin(angle-180) * 30,-sin(pitch)*-3);
+		
 		let blst=hd_hopperheatbackblast(spawn("HD_HopperheatBackblast",positionoffset,
 			ALLOW_REPLACE)
 		);
