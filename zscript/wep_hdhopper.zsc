@@ -299,7 +299,7 @@ action void A_HeatBackBlast()
 		HPPR B 2
 		{
 		A_GunFlash();
-		gyrogrenade rkt;
+		rocketgrenade rkt;
 		class<actor> rrr;
 		if(invoker.weaponstatus[0]&HOPPF_LOADED_HR)
 		{
@@ -318,7 +318,7 @@ action void A_HeatBackBlast()
 
 
 		vector3 gpos=pos+gunpos((0,0,-getdefaultbytype(rrr).height*0.6));
-		rkt = gyrogrenade(spawn(rrr,gpos,ALLOW_REPLACE));
+		rkt = rocketgrenade(spawn(rrr,gpos,ALLOW_REPLACE));
 		let hdp=hdplayerpawn(self);
 		if(hdp){
 			rkt.angle=hdp.gunangle;
