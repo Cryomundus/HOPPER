@@ -36,7 +36,7 @@ class HDHopper:HDWeapon
 	
 action void A_BackBlast()
 	{	
-		vector3 positionoffset = pos+gunpos((0,0,-getdefaultbytype("GyroGrenade").height*0.6));
+		vector3 positionoffset = pos+gunpos((0,0,-getdefaultbytype("RocketGrenade").height*0.6));
 		positionoffset += (cos(angle-180) * 30, sin(angle-180) * 30,-sin(pitch)*-3);
 		
 		let blst=hd_hopperbackblast(spawn("HD_HopperBackblast",positionoffset,
@@ -312,7 +312,7 @@ action void A_HeatBackBlast()
 		else
 		{
 			invoker.weaponstatus[0]&=~HOPPF_LOADED_RG;
-			rrr="GyroGrenade";
+			rrr="RocketGrenade";
 			A_BackBlast();
 		}
 
@@ -546,5 +546,3 @@ enum hopperstatus{
 	HOPPF_JUSTUNLOAD=1,
 	HOPPF_STATUS=0,
 };
-
-
