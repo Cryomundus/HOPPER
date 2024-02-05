@@ -1,0 +1,16 @@
+[en enc eng eni ena enz default]
+// Weapon Tags.
+TAG_HOPPER             = "Hopper Launcher";
+PICKUP_HOPPER          = "You got the Hopper launcher!";
+PICKUP_HOPPER_HEAT     = " ...Why are you smiling?";
+PICKUP_HOPPER_GRENADE  = " It's got a good heft to it.";
+PICKUP_HOPPER_EMPTY    = " It's disappointingly light.";
+OB_HOPPER              = "%o was hopp'd on by %k.";
+
+// Weapon help text.
+
+HOPPISWH_RELOAD     = "  Load Rocket Grenade\n";
+HOPPISWH_ALTRELOAD  = "  Load H.E.A.T. round\n";
+HOPPISWH_UNLOADHEAT = "  Remove H.E.A.T. round\n";
+HOPPISWH_OR    = " or ";
+HOPPISWH_COMMA = ", ";
