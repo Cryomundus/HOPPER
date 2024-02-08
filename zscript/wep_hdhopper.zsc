@@ -27,10 +27,10 @@ class HDHopper:HDWeapon
 		weapon.slotnumber 5;
 		weapon.slotpriority 0;
 		scale 0.6;
-		inventory.pickupmessage "You got the Hopper launcher!";
-		obituary "%o was hopp'd on by %k.";
+		inventory.pickupmessage "$PICKUP_HOPPER";
+		obituary "$OB_HOPPER";
 		hdweapon.barrelsize 30,1.6,3;
-		tag "Hopper Launcher";
+		tag "$TAG_HOPPER";
 		hdweapon.refid HDLD_HOPPER;
 	}
 	
@@ -108,15 +108,15 @@ action void A_HeatBackBlast()
 		string msg=super.pickupmessage();
 		if(weaponstatus[0]&HOPPF_LOADED_HR)
 		{
-			msg = msg.."...Why are you smiling?";
+			msg = msg..StringTable.Localize("$PICKUP_HOPPER_HEAT");
 		}
 		else if(weaponstatus[0]&HOPPF_LOADED_RG)
 		{
-			msg = msg.."...And it's got a good heft to it.";
+			msg = msg..StringTable.Localize("$PICKUP_HOPPER_GRENADE");
 		}
 		else if(!(weaponstatus[0]&HOPPF_LOADED_RG))
 		{
-			msg = msg.."...but it's disappointingly light...";
+			msg = msg..StringTable.Localize("$PICKUP_HOPPER_EMPTY");
 		}
 		return msg;
 	}
@@ -158,18 +158,26 @@ action void A_HeatBackBlast()
 	}
 	override string gethelptext()
 	{
-
+		LocalizeHelp();
 		string helpstring = "";
-		if(!(weaponstatus[0]&HOPPF_LOADED_HR))
+		
+		helpstring = helpstring..LWPHELP_FIRESHOOT;
+		
+		if((weaponstatus[0]&HOPPF_LOADED_HR))
 		{
-			helpstring = helpstring..WEPHELP_FIRESHOOT..WEPHELP_RELOADRELOAD;
-			helpstring = helpstring..WEPHELP_ALTRELOAD.."  Load H.E.A.T. round\n";
-			helpstring = helpstring..WEPHELP_UNLOADUNLOAD;
+			helpstring = helpstring..LWPHELP_RELOAD..StringTable.Localize("$HOPPISWH_COMMA")..LWPHELP_ALTRELOAD..StringTable.Localize("$HOPPISWH_OR")..LWPHELP_UNLOAD..StringTable.Localize("$HOPPISWH_UNLOADHEAT");
+		}
+		else if((weaponstatus[0]&HOPPF_LOADED_RG))
+		{
+			
+			helpstring = helpstring..LWPHELP_ALTRELOAD..StringTable.Localize("$HOPPISWH_ALTRELOAD");
+			helpstring = helpstring..LWPHELP_UNLOADUNLOAD;
 		}
 		else
 		{
-			helpstring = helpstring..WEPHELP_FIRESHOOT;
-			helpstring = helpstring..WEPHELP_RELOAD..", "..WEPHELP_ALTRELOAD.." or "..WEPHELP_UNLOAD.."  Remove H.E.A.T. round\n";
+			helpstring = helpstring..LWPHELP_RELOAD..StringTable.Localize("$HOPPISWH_RELOAD");
+			helpstring = helpstring..LWPHELP_ALTRELOAD..StringTable.Localize("$HOPPISWH_ALTRELOAD");
+			helpstring = helpstring..LWPHELP_UNLOADUNLOAD;
 		}
 
 		return helpstring;
@@ -313,6 +321,7 @@ action void A_HeatBackBlast()
 		{
 			invoker.weaponstatus[0]&=~HOPPF_LOADED_RG;
 			rrr="RocketGrenade";
+			A_SetHelpText();
 			A_BackBlast();
 		}
 
@@ -406,6 +415,7 @@ action void A_HeatBackBlast()
 					A_SetTics(5);
 				}
 			}
+			A_SetHelpText();
 		}
 	reloadend:
 		HPPR A 1 offset(12,80);
